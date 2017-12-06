@@ -39,7 +39,7 @@ public class Repository {
         }
     }
     
-    public Customer getCustomerByCode(String name,String surname){
+    public Customer getCustomerByNameSurname(String name,String surname){
         try {
             return (Customer) em.createQuery("SELECT c FROM Customer c WHERE c.name=:name AND c.surname=:surname")
                     .setParameter("name", name)

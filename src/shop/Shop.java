@@ -35,7 +35,7 @@ public class Shop {
         newProduct.addProduct("Колбаса", 400L, 10);
         
         Repository r = new Repository();
-        Customer customer = r.getCustomerByCode("Peter", "Petrov");
+        Customer customer = r.getCustomerByNameSurname("Peter", "Petrov");
         Product product = r.getProductByName("Хлеб");
         Purchase purchase = new Purchase();
         if(product != null && customer != null){
