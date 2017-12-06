@@ -14,24 +14,31 @@ import javax.persistence.Persistence;
  * @author Melnikov
  */
 public class SingletonEM {
+    
     EntityManagerFactory emf;
     EntityManager em;
     private static SingletonEM instanse = new SingletonEM();
     
     private SingletonEM(){
-        emf = Persistence.createEntityManagerFactory("ShopPU");
-        em = emf.createEntityManager();
+        
     }
     
     public static SingletonEM getInstanse(){
+        
         if(instanse == null){
             instanse = new SingletonEM();
         }
         return instanse;
        
     }
+    
     public EntityManager getEntityManager(){
         return em;
+    }
+    
+    public void setEntitiManager(String persistenceUnitName){
+        emf = Persistence.createEntityManagerFactory(persistenceUnitName);
+        em = emf.createEntityManager();
     }
     
     public void close(){

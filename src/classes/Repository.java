@@ -18,6 +18,14 @@ public class Repository {
 
     public Repository() {
         SingletonEM sem = SingletonEM.getInstanse();
+        sem.setEntitiManager("ShopPU");
+        em = sem.getEntityManager();
+    }
+
+     
+    public Repository(String persistenceUnitName) {
+        SingletonEM sem = SingletonEM.getInstanse();
+        sem.setEntitiManager(persistenceUnitName);
         em = sem.getEntityManager();
     }
     

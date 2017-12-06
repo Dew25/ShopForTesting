@@ -11,8 +11,6 @@ import entity.Product;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 
 /**
  *
@@ -23,9 +21,17 @@ public class Purchase {
     private Product product;
     private Integer quantity;
     private EntityManager em;
-    
+
     public Purchase() {
         SingletonEM sem = SingletonEM.getInstanse();
+        sem.setEntitiManager("ShopPU");
+        em = sem.getEntityManager();
+    }
+    
+    
+    public Purchase(String persistenUnitName) {
+        SingletonEM sem = SingletonEM.getInstanse();
+        sem.setEntitiManager(persistenUnitName);
         em = sem.getEntityManager();
     }
 

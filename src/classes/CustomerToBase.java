@@ -19,9 +19,17 @@ public class CustomerToBase {
     private Long money;
     private String phone;
     private String city;
-    private EntityManager em;
-    public CustomerToBase() {
+    private final EntityManager em;
+    
+    public CustomerToBase(){
         SingletonEM sem = SingletonEM.getInstanse();
+        sem.setEntitiManager("ShopPU");
+        em = sem.getEntityManager();
+    }
+    
+    public CustomerToBase(String persistenUnitName) {
+        SingletonEM sem = SingletonEM.getInstanse();
+        sem.setEntitiManager(persistenUnitName);
         em = sem.getEntityManager();
     }
 

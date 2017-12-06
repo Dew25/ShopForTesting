@@ -7,8 +7,6 @@ package classes;
 
 import entity.Product;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 
 /**
  *
@@ -20,9 +18,17 @@ public class ProductToBase {
     private Long price;
     private Integer quantity;
     EntityManager em;
-    
+
     public ProductToBase() {
         SingletonEM sem = SingletonEM.getInstanse();
+        sem.setEntitiManager("ShopPU");
+        em = sem.getEntityManager();
+    }
+    
+    
+    public ProductToBase(String persistenUnitName) {
+        SingletonEM sem = SingletonEM.getInstanse();
+        sem.setEntitiManager(persistenUnitName);
         em = sem.getEntityManager();
     }
 
@@ -35,8 +41,7 @@ public class ProductToBase {
     }
     
     public boolean addProduct(){
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("ShopPU");
-        EntityManager em = emf.createEntityManager();
+        
         Product p = new Product(name, price, quantity);
         try {
             em.getTransaction().begin();
@@ -49,8 +54,7 @@ public class ProductToBase {
     }
     
     public boolean addProduct(String name, Long price, Integer quantity){
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("ShopPU");
-        EntityManager em = emf.createEntityManager();
+        
         Product p = new Product(name, price, quantity);
         try {
             em.getTransaction().begin();
